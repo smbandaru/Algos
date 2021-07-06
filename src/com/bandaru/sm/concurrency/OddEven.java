@@ -10,37 +10,33 @@ public class OddEven {
         counter = 1;
     }
 
-    public void printOdd() {
-        synchronized (this) {
-            while (counter < n) {
-                while (isEven) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+    private synchronized void printOdd() {
+        while (counter < n) {
+            while (isEven) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName() + " : " + counter++);
-                isEven = true;
-                notify();
             }
+            System.out.println(Thread.currentThread().getName() + " : " + counter++);
+            isEven = true;
+            notify();
         }
     }
 
-    public void printEven() {
-        synchronized (this) {
-            while (counter < n) {
-                while (!isEven) {
-                    try {
-                        wait();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+    private synchronized void printEven() {
+        while (counter < n) {
+            while (!isEven) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                System.out.println(Thread.currentThread().getName() + ": " + counter++);
-                isEven = false;
-                notify();
             }
+            System.out.println(Thread.currentThread().getName() + ": " + counter++);
+            isEven = false;
+            notify();
         }
     }
 
