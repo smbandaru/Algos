@@ -3,7 +3,7 @@ package com.bandaru.sm.concurrency;
 public class OddEven {
     private boolean isEven;
     private int counter;
-    private int n;
+    private final int n;
 
     public OddEven(int n) {
         this.n = n;
@@ -42,10 +42,10 @@ public class OddEven {
 
     public static void main(String[] args) {
         OddEven oe = new OddEven(100);
-        Thread t3 = new Thread(oe::printOdd, "Odd");
-        Thread t5 = new Thread(oe::printEven, "Even");
-        t3.start();
-        t5.start();
+        Thread tOdd = new Thread(oe::printOdd, "Odd");
+        Thread tEven = new Thread(oe::printEven, "Even");
+        tOdd.start();
+        tEven.start();
     }
 }
 
