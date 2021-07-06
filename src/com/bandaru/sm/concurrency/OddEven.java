@@ -41,9 +41,9 @@ public class OddEven {
     }
 
     public static void main(String[] args) {
-        OddEven mt = new OddEven(100);
-        Thread t3 = new Thread(mt::printOdd, "Odd");
-        Thread t5 = new Thread(mt::printEven, "Even");
+        OddEven oe = new OddEven(100);
+        Thread t3 = new Thread(oe::printOdd, "Odd");
+        Thread t5 = new Thread(oe::printEven, "Even");
         t3.start();
         t5.start();
     }
